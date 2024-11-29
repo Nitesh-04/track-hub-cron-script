@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const BASE_URL = 'https://track-hub/api';
+const BASE_URL = 'https://track-hub.vercel.app/api';
 const CRON_SECRET = process.env.CRON_SECRET;
 
 if(!CRON_SECRET) {
@@ -24,7 +24,7 @@ async function hourlyNotification() {
         if(!response.ok) {
             throw new Error('Failed to send hourly notification');
         }
-        
+
         console.log(`Hourly notification sent at ${new Date().toISOString()}`);
     } catch (error) {
         console.error('Failed to send hourly notification');
