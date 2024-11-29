@@ -31,6 +31,6 @@ async function hourlyNotification() {
     }
 }
 
-cron.schedule('0 * * * *', () => {
+cron.schedule('30 * * * *', () => {
     hourlyNotification();
 });
