@@ -31,6 +31,26 @@ async function hourlyNotification() {
     }
 }
 
+async function minuteNotification() {
+    try {
+        const response = await fetch(`${BASE_URL}/notifyMinute`, {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${CRON_SECRET}`,
+                'Content-Type': 'application/json',
+            }
+        });
+
+        if(!response.ok) {
+            throw new Error('Failed to send minute notification');
+        }
+
+        console.log(`Minute notification sent at ${new Date().toISOString()}`);
+    } catch (error) {
+        console.error('Failed to send minute notification');
+    }
+}
+
 cron.schedule('30 * * * *', () => {
     hourlyNotification();
 });
